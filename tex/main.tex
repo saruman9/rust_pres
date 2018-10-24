@@ -1,0 +1,168 @@
+% Use this if you generate the presentation itself.
+\documentclass[%
+final,
+xcolor = table,
+usenames,
+dvipsnames,
+table,
+aspectratio = 169]{beamer}
+
+% Use this documentclass line for generating the handout
+% \documentclass[%
+% final,
+% xcolor = table,
+% usenames,
+% dvipsnames,
+% table,
+% hadout,
+% draft,
+% aspectratio = 169,
+% ]{beamer}
+
+\usepackage{appendixnumberbeamer}
+
+% minted load packages: keyval, ifthen, etoolbox, kvoptions, calc, xstring,
+% fancyvrb, ifplatform, xcolor, float, pdftexcmds, lineno
+\usepackage[outputdir = ../.latex-cache]{minted} % minted above polyglossia, because errors
+\usemintedstyle{manni}
+
+%% Two version of compilers (pdflatex, xelatex)
+\usepackage{ifxetex}
+%% XeTeX
+\ifxetex
+    \usepackage{polyglossia} % Multilanguages
+
+    \usepackage{xunicode} % Generate Unicode chars from accented glyphs.
+    \usepackage{xltxtra} % "Extras" for LaTeX users of XeTeX.
+
+    % Support of russian language (hyphenation, styles, etc.)
+    \setmainlanguage[babelshorthands = true]{russian} % default language --- Russian
+    \setotherlanguage{english} % additional language --- English
+
+    %% Fonts
+    % \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+    % \setmainfont{CMU Serif}
+    % \setsansfont{CMU Sans Serif}
+    % \setmainfont{Droid Serif}
+    % \newfontfamily\cyrillicfont{Droid Serif}
+    % \setsansfont{Droid Sans}
+    % \newfontfamily\cyrillicfontsf{Droid Sans}
+    % \setmonofont{CMU Typewriter Text}
+    \setmonofont{TerminusTTF}
+    \newfontfamily\cyrillicfonttt{TerminusTTF}
+\else
+    \usepackage[T2A]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{graphicx} % Images
+% \usepackage{pdfpages} % PDFs
+\usepackage{pgfpages} % Two screens
+
+\usepackage{multirow} % Multirows in tables
+
+% Set path for graphics
+\graphicspath{{../images/}}
+
+%% Vector graphics
+\usepackage{tikz}
+
+\usetikzlibrary{arrows.meta,
+  automata,
+  backgrounds,
+  calc,
+  decorations.markings,
+  decorations.pathmorphing,
+  fit,
+  graphs,
+  matrix,
+  positioning,
+  shapes.geometric,
+  shapes.misc,
+  shapes.multipart,
+  tikzmark,
+}
+
+% ==============================================================================
+
+\mode<presentation>
+{
+
+  %% Theme settings
+  \usetheme{dsec}
+  \dsecset{progressbar = frametitle}
+  \dsecset{subsectionpage = progressbar}
+
+  %% Notes settings
+  % \setbeameroption{hide notes}
+  % \setbeameroption{show notes}
+  % \setbeameroption{show notes on second screen = right}
+  % \setbeameroption{show only notes}
+
+  % Style of notes
+  \setbeamertemplate{note page}[plain]
+}
+
+%% Fix bug with beamer + xelatex + notes
+% https://tex.stackexchange.com/questions/232168/normal-text-is-invisible-when-using-beamer-with-notes-and-xelatex
+\makeatletter
+\def\beamer@framenotesbegin{% at beginning of slide
+     \usebeamercolor[fg]{normal text}
+      \gdef\beamer@noteitems{}%
+      \gdef\beamer@notes{}%
+}
+\makeatother
+
+% ==============================================================================
+
+\title{Rust and what's this thing for?}
+
+\author{Abc Xyz\\
+@dura\_lex}
+\institute{}
+\titlegraphic{\includegraphics[height = 0.9cm]{logo.pdf}}
+
+\date{}
+\subject{Rust}
+
+% ==============================================================================
+
+\begin{document}
+
+\maketitle
+
+%% Set theme colors
+\tikzset{%
+  text = dBlack,%
+  % draw = White,%
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Agenda}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideothersubsections]
+\end{frame}
+
+% ------------------------------------------------------------------------------
+
+\section{Introduction}
+\input{intro}
+
+% ------------------------------------------------------------------------------
+
+\section{Ecosystem}
+\subsection{Cargo}
+\input{cargo}
+
+% ------------------------------------------------------------------------------
+
+\section{Summary}
+\input{summary}
+
+\appendix
+
+\input{biblio}
+
+\end{document}

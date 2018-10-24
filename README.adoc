@@ -1,0 +1,11 @@
+= Rust and what's this thing for?
+:author: Abc Xyz
+:toc: left
+:icons: font
+:lang:en
+:sectlinks:
+:imagesdir: images
+
+== Links
+
+link:./dsec_wo_notes.pdf[Digital Security version (without notes)]
