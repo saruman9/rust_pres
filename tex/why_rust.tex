@@ -5,6 +5,7 @@
     \begin{itemize}
     \item Fast, memory-efficient
     \item No runtime or garbage collector
+    \item Zero-cost abstractions
     \end{itemize}
   \item Reliability
     \begin{itemize}
@@ -24,8 +25,9 @@
     Какие характерные черты данного языка можно выделить?
 
     \begin{itemize}
-    \item Быстрый, без GC, поэтому можно \textbf{встраивать в другие языки}, в
-      \textbf{критические сервисы}, запускать \textbf{на встраиваемых системах}.
+    \item Быстрый за счёт \textbf{нулевой стоимости абстракций}, без GC, поэтому
+      можно \textbf{встраивать в другие языки}, в \textbf{критические сервисы},
+      запускать \textbf{на встраиваемых системах}.
     \item Богатая система типов и модель владения, отсюда --- \textbf{безопасная
         работа} с памятью и потоками, многие ошибки отлавливаются \textbf{во
         время компилирования}.
