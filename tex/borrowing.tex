@@ -1,0 +1,450 @@
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 85]{o_and_b.pdf}%
+
+  \note {
+
+    Концепция \textbf{заимствования}.
+
+    Разделяемые заимствования.
+
+    У нас как всегда \textbf{есть книга дракона}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 86]{o_and_b.pdf}%
+
+  \note {
+
+    Мы \textbf{отдаём} эту книгу, но \textbf{с условием, что нам её вернут}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 87]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{После того}, как нашу книгу \textbf{прочитали}, нам её
+    \textbf{возвращают}.
+
+    В отличие от передачи прав владения, мы даём книгу только \textbf{на время}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 88]{o_and_b.pdf}%
+
+  \note {
+
+    Теперь рассмотрим пример кода.
+
+    У нас всё так же есть переменная \texttt{name} типа \texttt{String}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 90]{o_and_b.pdf}%
+
+  \note {
+
+    Обратите внимание, как поменялся тип параметра --- теперь передаётся не
+    объект, а ссылка на объект, то бишь ссылка на переменную типа
+    \texttt{String}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 92]{o_and_b.pdf}%
+
+  \note {
+
+    Чтобы передать нашу строку функции, \textbf{нам нужно получить ссылку},
+    делаем это.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 96]{o_and_b.pdf}%
+
+  \note {
+
+    Вызываем функцию \texttt{helper} и \textbf{передаём ей ссылку} на строку в
+    качестве аргумента.
+
+    Стоить заметить, что \textbf{ссылка на объект также остаётся у нас} в
+    пользовании.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 97]{o_and_b.pdf}%
+
+  \note {
+
+    Функция выполняется.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 98]{o_and_b.pdf}%
+
+  \note {
+
+    Функция заканчивает своё выполнение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 99]{o_and_b.pdf}%
+
+  \note {
+
+    Функция исчезает, а с ней \textbf{исчезает и ссылка}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 100]{o_and_b.pdf}%
+
+  \note {
+
+    Мы снова можем вызвать функцию \texttt{helper}, передав ссылку на объект.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 102]{o_and_b.pdf}%
+
+  \note {
+
+    Когда главная \textbf{функция прекращает своё выполнение}, то \textbf{и
+      ссылка, и объект уничтожаются}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 103]{o_and_b.pdf}%
+
+  \note {
+
+    Стоит сказать, что в Rust \textbf{все объекты}, будь то значение или ссылки
+    --- \textbf{неизменяемые} по умолчанию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 104]{o_and_b.pdf}%
+
+  \note {
+
+    Поэтому, если мы просто \textbf{читаем данные}, переданные нам по ссылке, то
+    всё будет \textbf{хорошо}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 105]{o_and_b.pdf}%
+
+  \note {
+
+    А если попробуем \textbf{изменить} данные, то получим \textbf{ошибку}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 106]{o_and_b.pdf}%
+
+  \note {
+
+    Ошибку \textbf{компиляции}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 107]{o_and_b.pdf}%
+
+  \note {
+
+    На самом деле, данные \textbf{можно изменять}, но \textbf{только
+      контролируемо}, об этом я не буду рассказывать подробно, считайте, что
+    \textbf{по умолчанию всё неизменяемое}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 108]{o_and_b.pdf}%
+
+  \note {
+
+    Побольше рассмотрим ссылки.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 109]{o_and_b.pdf}%
+
+  \note {
+
+    Всё тот же пример.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 110]{o_and_b.pdf}%
+
+  \note {
+
+    На самом деле тип \texttt{String} представляет из себя структуру, которая
+    состоит из нескольких полей.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 110]{o_and_b.pdf}%
+
+  \note {
+
+    В функцию \texttt{helper} мы можем \textbf{передать часть строки}, как и в
+    любых других ЯП.
+
+    Но стоит обратить внимание на то, что в отличие от других ЯП, копирование
+    объекта не происходит, мы передаём данные по ссылке (zero-cost abstraction).
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 112]{o_and_b.pdf}%
+
+  \note {
+
+    Если вы внимательны, то могли заметить, что \textbf{тип параметра у функции
+      поменялся} на \texttt{\&str}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 113]{o_and_b.pdf}%
+
+  \note {
+
+    Так произошло по причине того, что мы передаём ссылку не на саму строку типа
+    \texttt{String}, а только на \textbf{часть строки}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 114]{o_and_b.pdf}%
+
+  \note {
+
+    Таким образом у нас появляется новый объект типа \texttt{str}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 116]{o_and_b.pdf}%
+
+  \note {
+
+    Итак выполняем нашу функцию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 117]{o_and_b.pdf}%
+
+  \note {
+
+    Итак выполняем нашу функцию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 118]{o_and_b.pdf}%
+
+  \note {
+
+    После окончания выополнения функции, ссылка на объект удаляется, так же, как
+    и объект типа \texttt{str}.
+
+    \textbf{Вызываем повторно} нашу функцию, но уже со ссылкой на
+    \texttt{String}. Стоит заметить, что \textbf{тип функции нам менять не
+      нужно}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 119]{o_and_b.pdf}%
+
+  \note {
+
+    После выполнения все данные очищаются.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 121]{o_and_b.pdf}%
+
+  \note {
+
+    Таким образом, мы можем выполнять высокоуровневый код с нулевой стоимостью.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 122]{o_and_b.pdf}%
+
+  \note {
+
+    Допустим, мы разбиваем строку на слова, между которыми стоят пробелы.
+
+    Вместо того, чтобы копировать каждое слово, мы передаём ссылку на объект.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 123]{o_and_b.pdf}%
+
+  \note {
+
+    Пример.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 124-126]{o_and_b.pdf}%
+
+  \note {
+
+    Пример.
+
+  }
+
+}

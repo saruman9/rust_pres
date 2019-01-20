@@ -1,0 +1,246 @@
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 128]{o_and_b.pdf}%
+
+  \note {
+
+    Следующая концепция --- \textbf{изменяемые заимствования}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 129-130]{o_and_b.pdf}%
+
+  \note {
+
+    Всё то же самое, что и в обычных заимствованиях, только функция
+    \textbf{может изменять} данные.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 131]{o_and_b.pdf}%
+
+  \note {
+
+    Всё то же самое. Только объект мы делаем таким, чтобы можно было его
+    \textbf{изменять}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 133]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Тип параметра} также следует поменять на \textbf{изменяемую ссылку}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 134]{o_and_b.pdf}%
+
+  \note {
+
+    Для передачи изменяемой ссылки, мы также должны \textbf{явно указать}, что
+    данная \textbf{ссылка является изменяемой}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 136]{o_and_b.pdf}%
+
+  \note {
+
+    Так же, как и раньше мы передаём ссылку, но в Rust при передачи изменяемой
+    ссылки у хозяина \textbf{пропадает возможность читать и писать данные} по
+    этой ссылке.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 138]{o_and_b.pdf}%
+
+  \note {
+
+    Начинаем выполнения функции.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 140]{o_and_b.pdf}%
+
+  \note {
+
+    Изменяем переданный нам объект.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 142]{o_and_b.pdf}%
+
+  \note {
+
+    Заканчиваем выполнение функции.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 143]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Эксклюзивные права на запись пропадают}, так как изменяемая ссылка
+    уничтожается.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 145]{o_and_b.pdf}%
+
+  \note {
+
+    Дальше можем оперировать строкой как обычно.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 146]{o_and_b.pdf}%
+
+  \note {
+
+    Например распечатать её (данные передаются по ссылке).
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 148]{o_and_b.pdf}%
+
+  \note {
+
+    Главная функция заканчивает своё выполнение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 149]{o_and_b.pdf}%
+
+  \note {
+
+    Данные как всегда --- удаляются.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 150]{o_and_b.pdf}%
+
+  \note {
+
+    Подведём итог.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 151]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Владение}.
+
+    Мы имеем \textbf{полный доступ к данным}, которые удалятся, когда будут не
+    нужны.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 152]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Заимствование}.
+
+    По ссылке мы можем \textbf{многократно читать, но не писать}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 153]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Изменяемое заимствование}.
+
+    По изменяемой ссылке мы можем \textbf{только писать}.
+
+  }
+
+}

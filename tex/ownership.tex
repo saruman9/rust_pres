@@ -1,0 +1,626 @@
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 1]{o_and_b.pdf}%
+
+  \note {
+
+    Для того, чтобы понять, \textbf{почему Rust} считается безопасным языком,
+    нужно понимать, \textbf{как он работает}, какие концепции используются.
+
+    Мне было лень, поэтому я взял хорошо оформленные и понятные слайды
+    презентации Николаса Матсакиса (один из главных разработчиков Rust), за что
+    ему большое спасибо.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 38]{o_and_b.pdf}%
+
+  \note {
+
+    \textbf{Владение и заимствование} --- вот одни из главных концепций ЯП Rust.
+
+    На следующих слайдах я расскажу, что это такое.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 39]{o_and_b.pdf}%
+
+  \note {
+
+    И так, концепция \textbf{владения}.
+
+    У нас есть книга, мы ею \textbf{владеем}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 40]{o_and_b.pdf}%
+
+  \note {
+
+    Как только \textbf{мы передаём} книгу, мы \textbf{перестаём ей владеть}. У
+    книги появляется новый хозяин.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 41]{o_and_b.pdf}%
+
+  \note {
+
+    Рассмотрим на примере кода.
+
+    У нас есть переменная \texttt{name} (\textbf{наша книга}) типа
+    \texttt{String}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 42]{o_and_b.pdf}%
+
+  \note {
+
+    Также у нас есть функция \texttt{helper} --- будущий хозяин нашей строки
+    (книги). Что же происходит при вызове функции?
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 43]{o_and_b.pdf}%
+
+  \note {
+
+    Посмотрим на определение функции \texttt{helper} --- в качестве параметра
+    она принимает объект с типом \texttt{String}. Она принимает \textbf{не
+      ссылку} и \textbf{не само значение}, а именно возможность владения данным
+    \textbf{объектом}, если можно так сказать.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 44]{o_and_b.pdf}%
+
+  \note {
+
+    Возвращаемся обратно, \textbf{вызываем функцию}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 45]{o_and_b.pdf}%
+
+  \note {
+
+    При вызове функции у нас \textbf{происходит смена владельца} нашей книги.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 46-47]{o_and_b.pdf}%
+
+  \note {
+
+    После того, как \textbf{функция отработала} --- она, то бишь хозяин,
+    \textbf{исчезает}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 48]{o_and_b.pdf}%
+
+  \note {
+
+    А если \textbf{исчезает хозяин}, то вместе и \textbf{с ним объект}, которым
+    он владел. Это называется \textbf{RAII} (Resource acquisition is
+    initialization) --- \textbf{получение ресурса есть инициализация}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 49]{o_and_b.pdf}%
+
+  \note {
+
+    Если мы попытаемся \textbf{ещё раз вызвать функцию}, которая в качестве
+    аргумента принимает объект, которого \textbf{у нас уже нет}, т. к. мы его
+    уже отдали, \textbf{что же тогда произойдёт}?
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 50]{o_and_b.pdf}%
+
+  \note {
+
+    Правильно, \textbf{ошибка} --- использование уже перемещённого значения.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 51]{o_and_b.pdf}%
+
+  \note {
+
+    Посмотрим как данная концепция (или \textbf{её подобие}) реализована в
+    других языках.
+
+    У нас также есть объект, но типа \texttt{Vector} (что по сути также может
+    быть строкой, вектором символов).
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 52]{o_and_b.pdf}%
+
+  \note {
+
+    У нас есть функция, которая также в качестве параметра принимает объект типа
+    \texttt{Vector}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 53]{o_and_b.pdf}%
+
+  \note {
+
+    Но в данном случае параметр функции передаётся \textbf{в качестве ссылки}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 54]{o_and_b.pdf}%
+
+  \note {
+
+    Снова возвращаемся и вызываем нашу функцию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 56]{o_and_b.pdf}%
+
+  \note {
+
+    В \textbf{Java} при вызове функции у нас оказывается два хозяина одного
+    объекта.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 57]{o_and_b.pdf}%
+
+  \note {
+
+    Хорошо. Продолжаем выполнение функции.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 58]{o_and_b.pdf}%
+
+  \note {
+
+    Функция закончила своё выполнение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 59]{o_and_b.pdf}%
+
+  \note {
+
+    Функция исчезает, как и в Rust. Но \textbf{что же происходит с объектом}?
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 60]{o_and_b.pdf}%
+
+  \note {
+
+    Объект никуда не пропадает, он \textbf{остаётся у своего первоначального
+      хозяина}.
+
+    Также \textbf{возможен повторный вызов} функции \texttt{helper}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 61]{o_and_b.pdf}%
+
+  \note {
+
+    Главная функция заканчивает свою работу и также исчезает.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 62]{o_and_b.pdf}%
+
+  \note {
+
+    При этом \textbf{созданный функцией объект остаётся}. \textbf{Для чего это
+      нужно?}
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 63]{o_and_b.pdf}%
+
+  \note {
+
+    Представим, что функция \texttt{helper} внутри себя создаёт поток.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 64]{o_and_b.pdf}%
+
+  \note {
+
+    Тогда хозяином объекта, даже после исчезновения главной функции, будет
+    функция \texttt{helper}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 65]{o_and_b.pdf}%
+
+  \note {
+
+    Когда поток закончит свою работу, то текущий хозяин объекта также перестанет
+    существовать.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 66]{o_and_b.pdf}%
+
+  \note {
+
+    Ну а сборщик мусора сделает своё дело...
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 67]{o_and_b.pdf}%
+
+  \note {
+
+    ... и удалит уже никому ненужный объект.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 68]{o_and_b.pdf}%
+
+  \note {
+
+    Рассмотрим одну интересную особенность в Rust при передаче права владения
+    объектом, а именно концепцию \textbf{клонирования}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 69]{o_and_b.pdf}%
+
+  \note {
+
+    Всё также вызываем нашу функцию \texttt{helper}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 70]{o_and_b.pdf}%
+
+  \note {
+
+    Но при передаче прав владения объектом \textbf{мы делаем клон} этого самого
+    объекта!
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 72]{o_and_b.pdf}%
+
+  \note {
+
+    То есть в функцию мы отдаём не сам объект, а его клон.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 73]{o_and_b.pdf}%
+
+  \note {
+
+    Вызываем функцию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 74]{o_and_b.pdf}%
+
+  \note {
+
+    После того, как функция отработает, \textbf{она исчезает} и исчезает
+    аргумент, как было показано ранее, но при этом \textbf{исчезает клон
+      объекта}, а не сам объект!
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 75]{o_and_b.pdf}%
+
+  \note {
+
+    После этого мы повторно можем вызвать функцию \texttt{helper}, но передать
+    уже оригинальный объект.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 76]{o_and_b.pdf}%
+
+  \note {
+
+    В этом случае, мы, конечно же, его уже теряем.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 77]{o_and_b.pdf}%
+
+  \note {
+
+    Есть один небольшой нюанс в концепции клонирования --- \textbf{копирование}
+    или по-другому \textbf{авто-клонирование}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 78]{o_and_b.pdf}%
+
+  \note {
+
+    Если тип объекта \textbf{обладает свойством копирования (реализован типаж)},
+    то при передаче прав владения \textbf{клонирование происходит
+      автоматически}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 79]{o_and_b.pdf}%
+
+  \note {
+
+    Вызовем функцию \texttt{helper} в первый раз, передав при этом целочисленный
+    тип \texttt{i32}, который обладает свойством \texttt{Copy}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 80]{o_and_b.pdf}%
+
+  \note {
+
+    Произойдёт автоматическое клонирование при передаче прав владения.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 81]{o_and_b.pdf}%
+
+  \note {
+
+    После исполнения функции объект исчезает.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 82]{o_and_b.pdf}%
+
+  \note {
+
+    При втором вызове функции \texttt{helper} происходит то же самое, то есть
+    \textbf{объект остаётся у функции-создателя}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 83]{o_and_b.pdf}%
+
+  \note {
+
+    Подытожим.
+
+    У нас есть \textbf{некопируемые объекты}, при передаче прав владения
+    которых, \textbf{передаётся сам объект}.
+
+    У нас есть \textbf{объекты с возможностью клонирования}, для которых мы
+    вручную можем задать, чтобы передаче прав владения \textbf{создавался клон
+      объекта}.
+
+    И у нас есть объекты, которые имеют \textbf{свойство \texttt{Copy}}. Данные
+    объекты \textbf{прозрачно для разработчика копируются} при передаче в
+    качестве аргумента.
+
+  }
+
+}
