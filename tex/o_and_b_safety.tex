@@ -10,3 +10,589 @@
   }
 
 }
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 156]{o_and_b.pdf}%
+
+  \note {
+
+    Итак, у нас есть программа.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 157]{o_and_b.pdf}%
+
+  \note {
+
+    У нас создаётся \textbf{неинициализированная} переменная \texttt{r}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 158]{o_and_b.pdf}%
+
+  \note {
+
+    Данная переменная, соответственно, \textbf{создаётся на стеке}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 160]{o_and_b.pdf}%
+
+  \note {
+
+    Создаём ещё одну переменную \texttt{name} типа \texttt{String}. Переменная
+    создаётся \textbf{в своей области видимости}, позже я про это расскажу.
+
+    Стоит также заметить, что в Rust \textbf{есть type inference (вывод типов)},
+    который ранее был характерен в основном для функциональных ЯП.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 161]{o_and_b.pdf}%
+
+  \note {
+
+    Как мы видим, новая переменная также помещается на стек.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 163]{o_and_b.pdf}%
+
+  \note {
+
+    Производим присвоение переменной \texttt{r} ссылки на объект \texttt{name}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 164]{o_and_b.pdf}%
+
+  \note {
+
+    На стеке это будет выглядеть примерно так.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 166]{o_and_b.pdf}%
+
+  \note {
+
+    Продолжаем выполнение...
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 167]{o_and_b.pdf}%
+
+  \note {
+
+    ...и \textbf{выходим из области видимости} переменной \texttt{name}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 169]{o_and_b.pdf}%
+
+  \note {
+
+    Пытаемся распечатать содержимое переменной \texttt{r}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 170]{o_and_b.pdf}%
+
+  \note {
+
+    Упс! Висячая ссылка!
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 172]{o_and_b.pdf}%
+
+  \note {
+
+    Давайте посмотрим, как Rust с этим разбирается.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 174]{o_and_b.pdf}%
+
+  \note {
+
+    В Rust есть понятие \textbf{время жизни ссылки} --- это промежутки в коде,
+    где ссылка используется.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 176]{o_and_b.pdf}%
+
+  \note {
+
+    Сначала ссылка присваивается переменной \texttt{r}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 177]{o_and_b.pdf}%
+
+  \note {
+
+    Переменная \texttt{r}, объявленная выше, в свою очередь используется при
+    выводе в терминал.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 180]{o_and_b.pdf}%
+
+  \note {
+
+    Вся эта область и будет являться временем жизни ссылки.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 181]{o_and_b.pdf}%
+
+  \note {
+
+    Есть ещё одно понятие --- \textbf{область видимости}, область, где созданные
+    данные могут быть использованы.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 182]{o_and_b.pdf}%
+
+  \note {
+
+    Вот область видимости переменной \texttt{name}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 183]{o_and_b.pdf}%
+
+  \note {
+
+    Производя сравнения времени жизни переменной с областью видимости ссылки,
+    Rust приходит к выводу, что \textbf{здесь ошибка (на этапе компиляции)}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 184]{o_and_b.pdf}%
+
+  \note {
+
+    Посмотрим, как Rust справляется с ошибками, возникающими \textbf{при работе
+      с потоками}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 185]{o_and_b.pdf}%
+
+  \note {
+
+    У нас есть параметр функции \texttt{name}, оперировать которым мы можем
+    только в области видимости функции, т. е. время жизни ссылки будет ---
+    область видимости данной функции.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 188]{o_and_b.pdf}%
+
+  \note {
+
+    Если мы создадим поток и будем использовать переменную \texttt{name} во
+    вновь созданном потоке, то мы должны понимать, что \textbf{поток будет
+      исполняться вне данной функции}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 189]{o_and_b.pdf}%
+
+  \note {
+
+    Что приведёт к ошибке --- использование ссылки, которая возможно \textbf{уже
+      не существует}. Rust нам об этом скажет уже на этапе компиляции.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 191]{o_and_b.pdf}%
+
+  \note {
+
+    Мы можем задать \textbf{статическое время жизни ссылки} --- это значит, что
+    ссылка будет жить, пока программа не закончит своё выполнение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 194]{o_and_b.pdf}%
+
+  \note {
+
+    Переходим к следующим возможным ошибкам --- изменение используемых данных.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 196]{o_and_b.pdf}%
+
+  \note {
+
+    У нас создаётся \textbf{изменяемая} переменная типа \texttt{String}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 199]{o_and_b.pdf}%
+
+  \note {
+
+    Затем мы создаём ссылку на первый элемент строки.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 202]{o_and_b.pdf}%
+
+  \note {
+
+    Потом нам вздумалось изменить строку.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 203]{o_and_b.pdf}%
+
+  \note {
+
+    Добавили в конец \texttt{s}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 204]{o_and_b.pdf}%
+
+  \note {
+
+    Первоначальные данные с кучи у нас пропадут, т. к. мы, возможно, сделали
+    реаллокацию.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 206]{o_and_b.pdf}%
+
+  \note {
+
+    Что будет, если мы попытаемся вывести содержимое по ссылке \texttt{slice}?
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 207]{o_and_b.pdf}%
+
+  \note {
+
+    Верно! Снова ошибка висячей ссылки.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 209]{o_and_b.pdf}%
+
+  \note {
+
+    Как же Rust поступает в данном случае?
+
+    Во время компиляции проверяется:
+
+    \begin{itemize}
+    \item Если есть одна \textbf{ссылка на чтение}, то:
+      \begin{itemize}
+      \item создание ещё ссылок \textbf{на чтение ошибок не вызовет};
+      \item создание \textbf{ссылок на изменение запрещено};
+      \item данные правила будут работать до тех пор, \textbf{пока жива ссылка}.
+      \end{itemize}
+    \item Если есть одна \textbf{ссылка на изменение}, то:
+      \begin{itemize}
+      \item у неё \textbf{эксклюзивные права}, никаких новых ссылок быть не
+        может;
+      \item данные правила будут работать до тех пор, пока \textbf{жива ссылка}.
+      \end{itemize}
+    \end{itemize}
+
+    Таким образом, у нас ни при каких обстоятельствах \textbf{не может быть
+      ссылок на чтение и изменение одновременно}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 210]{o_and_b.pdf}%
+
+  \note {
+
+    Возвращаемся к нашему примеру с висячей ссылкой, полученной в результате
+    изменения объекта.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 212]{o_and_b.pdf}%
+
+  \note {
+
+    Когда мы создаём ссылку на чтение, мы автоматически \textbf{блокируем
+      создание ссылок на изменение}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 213]{o_and_b.pdf}%
+
+  \note {
+
+    В данной области не может быть создано ссылок на изменение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 214]{o_and_b.pdf}%
+
+  \note {
+
+    При вызове метода \texttt{push\_str} \textbf{создаётся изменяемая ссылка}, а
+    это запрещено, результат --- \textbf{ошибка на этапе компиляции}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 216]{o_and_b.pdf}%
+
+  \note {
+
+    Рассмотрим немного другой пример.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 217]{o_and_b.pdf}%
+
+  \note {
+
+    Здесь также создаётся ссылка на чтение.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 218]{o_and_b.pdf}%
+
+  \note {
+
+    Но время жизни ссылки уже другое.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 219]{o_and_b.pdf}%
+
+  \note {
+
+    В данной области у нас \textbf{нет прав создавать ссылку на изменение}.
+
+  }
+
+}
+
+{
+
+  \setbeamercolor{background canvas}{bg=}%
+  \includepdf[pages = 220]{o_and_b.pdf}%
+
+  \note {
+
+    Но \textbf{за границами жизни ссылки} на чтение мы \textbf{вправе создавать
+      ссылки} какие захотим.
+
+  }
+
+}
