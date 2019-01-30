@@ -24,7 +24,7 @@ aspectratio = 169]{beamer}
 % minted load packages: keyval, ifthen, etoolbox, kvoptions, calc, xstring,
 % fancyvrb, ifplatform, xcolor, float, pdftexcmds, lineno
 \usepackage[outputdir = ../.latex-cache]{minted} % minted above polyglossia, because errors
-\usemintedstyle{manni}
+\usemintedstyle{perldoc}
 
 %% Two version of compilers (pdflatex, xelatex)
 \usepackage{ifxetex}
@@ -36,20 +36,20 @@ aspectratio = 169]{beamer}
     \usepackage{xltxtra} % "Extras" for LaTeX users of XeTeX.
 
     % Support of russian language (hyphenation, styles, etc.)
-    \setmainlanguage[babelshorthands = true]{russian} % default language --- Russian
-    \setotherlanguage{english} % additional language --- English
+    \setmainlanguage{english} % default language --- English
+    \setotherlanguage{russian} % additional language --- Russian
 
     %% Fonts
     % \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
     % \setmainfont{CMU Serif}
     % \setsansfont{CMU Sans Serif}
     % \setmainfont{Droid Serif}
-    % \newfontfamily\cyrillicfont{Droid Serif}
+    % \newfontfamily\cyrillicfont{Fira Sans Light}[BoldFont={Fira Sans}]%
     % \setsansfont{Droid Sans}
     % \newfontfamily\cyrillicfontsf{Droid Sans}
     % \setmonofont{CMU Typewriter Text}
-    \setmonofont{TerminusTTF}
-    \newfontfamily\cyrillicfonttt{TerminusTTF}
+    \setmonofont{Anonymous Pro}
+    % \newfontfamily\cyrillicfonttt{Anonymous Pro}
 \else
     \usepackage[T2A]{fontenc}
     \usepackage[utf8]{inputenc}
@@ -181,13 +181,19 @@ aspectratio = 169]{beamer}
 \subsection{How do we get safety?}
 \input{o_and_b_safety}
 
+\subsection{Comparison}
+\input{comparison}
+
+\subsection{Concurrency}
+\input{concurrency}
+
 % ------------------------------------------------------------------------------
 
-% \section{Features}
+\section{Syntax}
+\input{syntax}
 
-% % ------------------------------------------------------------------------------
-
-% \section{Syntax}
+\subsection{Concepts}
+\input{concepts}
 
 % % ------------------------------------------------------------------------------
 

@@ -1,0 +1,67 @@
+\begin{frame}[fragile]{\insertsubsection}
+
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    //! # Main
+    //! Module docs
+
+    /// Docs
+    // Comments
+    fn main() {
+        let x = 31337;
+        println!("The value of x is: {}", x); // 31337
+        let mut y: u8 = 5;
+        y = x as u8;
+        println!("The value of y is: {}", y); // 105
+    }
+  \end{minted} 
+
+  \note {
+
+    Есть \textbf{встроенная система документации}, о которой расскажу позднее.
+
+    От функциональных языков в Rust пришла \textbf{иммутабельность
+      по-умолчанию}: все переменные, объекты, функции и т. п. по-умолчанию
+    неизменяемые.
+
+    Rust обладает \textbf{статической сильной типизацией} с возможностью
+    \textbf{вывода типов} (type inference). Используется \textbf{система типов
+      Хиндли--Милнера} (впервые использовалась в ML языках), благодаря которой и
+    работает вывод типов, а также другие особенности, о которых позже.
+
+    \textbf{Приведение типов} в Rust автоматическое для безопасных случаев, в
+    остальных --- ручной кастинг двух видов \texttt{as} и \texttt{transmute}.
+    
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{\insertsubsection}
+
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    fn nsa(is_hack: bool, backdoor: &str, blue_pill: String) -> f64 {
+        for c in blue_pill.chars() {
+            print!("{}", c);
+        }
+        if is_hack {
+            loop { break 3.1337; }
+        } else if backdoor.len() > 3 {
+            42.0
+        } else {
+            3.14
+        }
+    }
+  \end{minted} 
+
+  \note {
+
+    В Rust \textbf{всё есть выражение} (expression).
+
+    Пример задания параметров функции и возвращаемого значения.
+
+    Для управления потоком используются: \texttt{while}, \texttt{loop},
+    \texttt{if-else}, \texttt{for} --- проходит по элементам, например, по
+    итераторам.
+    
+  }
+
+\end{frame}

@@ -1,0 +1,30 @@
+\begin{frame}[fragile]{NULL dereferences}
+
+  \begin{minted}[gobble = 4, frame = lines, label = C]{c}
+    uint8_t* pointer = (uint8_t*) malloc(SIZE); // Might return NULL
+    for(int i = 0 ; i < SIZE ; ++i) {
+      pointer[i] = i; // Might cause a Segmentation Fault
+    }
+  \end{minted}
+    
+  \begin{minted}[gobble = 4, frame = lines, label = Rust]{rust}
+    let mut vec = vec![0 as u8; SIZE];
+    for i in 0..SIZE { // As C code
+      vec[i] = i;
+    }
+    for (i, elem) in vec.iter_mut().enumerate() { // Idiomatic code
+        *elem = i;
+    }
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, label = Rust References]{rust}
+    let my_var: u32 = 42;
+    let my_ref: &u32 = &my_var; // References ALWAYS point to valid data
+    let my_var2 = *my_ref; // An example for a Dereference
+  \end{minted}
+
+
+  \note{
+
+  }
+\end{frame}

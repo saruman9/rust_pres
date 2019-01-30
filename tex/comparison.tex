@@ -1,0 +1,199 @@
+\begin{frame}[fragile]{NULL dereferences}
+
+  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+    uint8_t* pointer = (uint8_t*) malloc(SIZE); // Might return NULL
+    for(int i = 0; i < SIZE; ++i) {
+      pointer[i] = i; // Might cause a Segmentation Fault
+    }
+  \end{minted}
+    
+  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+    let mut vec = vec![0 as u8; SIZE];
+    for i in 0..SIZE { // As C code
+      vec[i] = i;
+    }
+  \end{minted}
+
+  \note {
+
+    Как мы можем наблюдать, в C коде мы можем получить \textbf{SEGFAULT на
+      каждом шагу}, т. к. \texttt{malloc} и другие функции могут вернуть
+    \texttt{null}.
+
+    Если же писать на Rust в стиле, похожем на C, то в данной версии мы не можем
+    получить \texttt{null} априори, т. к. \textbf{\texttt{null} в Rust нет}.
+
+    В случае, \textbf{если аллокация памяти будет неудачной}, то мы либо получим
+    \textbf{панику}, либо \textbf{сможем отловить ошибку}.
+    
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{NULL dereferences (continue)}
+  \begin{minted}[gobble = 4, frame = lines, label = Functional Rust, linenos]%
+    {rust}
+    let vec: Vec<u8> = (0..10).collect();
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, label = Rust References, linenos]%
+    {rust}
+    let my_var: u32 = 42;
+    let my_ref: &u32 = &my_var; // References ALWAYS point
+                                // to valid data
+    let my_var2 = *my_ref; // An example for a Dereference
+  \end{minted}
+
+  \note{
+
+    В функциональном стиле всё ещё проще и без ошибок.
+
+    Если же работать с ссылками, то мы также \textbf{никогда не получим NULL},
+    потому что \textbf{в Rust нет NULL} вообще, в отличие от других языков.
+
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{Use after free (C)}
+
+  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+    uint8_t* pointer = (uint8_t*) malloc(SIZE);
+    // ...
+    if (err) {
+      abort = 1;
+      free(pointer);
+    }
+    // ...
+    if (abort) {
+      logError("operation aborted", pointer);
+    }
+  \end{minted}
+
+  \note {
+
+    Сначала мы \textbf{выделяем память} на куче, затем \textbf{освобождаем
+      память}, потом пытается \textbf{читать память}, которая уже освобождена.
+
+    \textbf{Поведение будет неоднозначным}, возможно, мы даже не заметим ошибки
+    до поры до времени.
+
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{Use after free (Rust)}
+    
+  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+    let vec: Vec<u32> = Vec::new();
+    {
+      {
+        let vec_1 = vec; // vec's ownership has been moved
+      } // the Vec will be freed (dropped) here
+    }
+  \end{minted}
+
+  \note {
+
+    В Rust, как и в C++ \textbf{работает RAII} (получение ресурса есть
+    инициализация), поэтому ошибок UAF в Rust быть не может. Кроме этого, как
+    говорилось выше, работают \textbf{и другие правила}, например, концепция
+    владения.
+
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{Dangling pointers (C)}
+  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+    uint8_t* get_dangling_pointer(void) {
+      uint8_t array[4] = {0};
+      return &array[0];
+    }
+  \end{minted} 
+
+  \note {
+
+    Создаём в функции переменную на стеке, затем возвращаем ссылку на эту
+    переменную --- у нас висячая ссылка. Ссылка указывает на неизвестные данные
+    на стеке.
+    
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Dangling pointers (Rust)}
+
+  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+    fn get_dangling_pointer() -> &u8 {
+      let array = [0; 4];
+      &array[0]
+    }
+  \end{minted}
+  
+  \begin{minted}[gobble = 4, frame = lines, label = Compile time error, breaklines]{text}
+      |
+    1 | fn get_dangling_pointer() -> &u8 {
+      |                              ^ help: consider giving it a 'static lifetime: `&'static`
+      |
+      = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+  \end{minted}
+
+  \note {
+
+    В Rust при попытке вернуть ссылку на переменные, находящиеся на стеке,
+    возникнет ошибка при компиляции.
+
+    Компилятор советует указать статическое время жизни ссылки для того, чтобы
+    она была доступна при выходе из функции.
+
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{Out of bounds (C)}
+  \begin{minted}[gobble = 4, frame = lines, label = C, linenos, breaklines]{c}
+    void print_out_of_bounds(void) {
+      uint8_t array[4] = {0};
+      printf("%u\r\n", array[4]);
+    }
+    // prints memory that's outside `array` (on the stack)
+  \end{minted}
+
+  \note {
+
+    При попытке получить значение вне массива, мы получим случайное значение на
+    стеке.
+    
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Out of bounds (Rust)}
+  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos, breaklines]{rust}
+    fn print_panics() {
+      let array = [0; 4];
+      println!("{}", array[4]);
+    }
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, label = Compile time error, breaklines]{text}
+    error: index out of bounds: the len is 4 but the index is 4
+     --> test.rs:8:20
+      |
+    3 |     println!("{}", array[4]);
+      |                    ^^^^^^^^
+      |
+      = note: #[deny(const_err)] on by default
+  \end{minted}
+
+  \note {
+
+    В случае с Rust, если существует возможность на стадии компиляции
+    \textbf{определить границы массива}, то ошибка \textbf{будет отловлена уже
+      на стадии компиляции}.
+
+    Если же компилятор \textbf{не может определить}, по какому индексу
+    происходит чтение, то в случае чтение за границами массива возникнет ошибка
+    во время исполнения --- \textbf{паника}.
+    
+  }
+\end{frame}

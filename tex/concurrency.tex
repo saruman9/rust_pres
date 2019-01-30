@@ -1,0 +1,69 @@
+\begin{frame}{\insertsubsection}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+
+      \textbf{Originally:} Rust had message passing built into the language
+
+      \textbf{Now:} library-based, multi-paradigm
+
+      \begin{itemize}
+      \item rayon (parallel processing, thread pool)
+      \item tokio, futures (I/O, async)
+      \item coroutine, coio (coroutine)
+      \item crossbeam, mio (low-level concurrency)
+      \end{itemize}
+
+      Libraries leverage \textbf{ownership and traits} to avoid data races
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width = 0.8\textwidth]{go_conc.jpg}
+    \end{column}
+  \end{columns}
+
+  \note {
+
+    На \textbf{уровне стандартной библиотеки} Rust имеет реализацию параллелизма
+    \textbf{в виде передачи сообщений}, также имеются \textbf{вспомогательные
+      типа}: мьютексы, атомарные типы и прочее, сейчас \textbf{на стадии обкатки
+      async-await}.
+
+    Но существует множество \textbf{решений в виде библиотек}, которые
+    реализовывают параллелизм в виде \textbf{множества различных парадигм}. Все
+    библиотеки \textbf{лишены багов типа гонка данных}, благодаря использованию
+    внутри концепций \textbf{владения и типажей}.
+    
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Concurrent quicksort}
+  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos, breaklines]{rust}
+    fn qsort(vec: &mut [i32]) {
+      if vec.len() <= 1 { return; }
+      let pivot = vec[random(vec.len())];
+      let mid = vec.partition(vec, pivot);
+      let (less, greater) = vec.split_at_mut(mid);
+
+      rayon::join(|| qsort(less),
+                  || qsort(greater));
+
+    }
+  \end{minted}
+
+  \note {
+
+    Кто и как часто писал распараллеленные программы? Я писал очень мало.
+
+    Не требуется понимать весь код, который представлен здесь. Достаточно
+    понять, как \textbf{легко с помощью библиотеки} \texttt{rayon}
+    (среднеуровневая библиотека) здесь реализована \textbf{распараллеленная
+      быстрая сортировка}.
+
+    На \textbf{других ЯП} распараллеленная быстрая сортировка, как правило,
+    выглядит гораздо \textbf{сложнее}, в Rust же она \textbf{лишена таких багов,
+      как data races}, благодаря вышеназванным концепциям.
+
+    \textbf{Больше о параллелизме я говорить не буду}, так как данная тема
+    займёт всё время, да и я не шарю на столько, чтобы про него вещать.
+    
+  }
+\end{frame}
