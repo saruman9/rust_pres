@@ -1,0 +1,89 @@
+\begin{frame}[fragile]{\insertsubsubsection}
+  \begin{onlyenv}<1>
+    \includegraphics[height = 0.9\textheight]{c_p_p_ub.jpg}%
+  \end{onlyenv} 
+
+  \begin{onlyenv}<2>
+
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Panic]{rust}
+    fn main() {
+        let v = vec![1, 2, 3];
+    
+        v[99];
+    }
+  \end{minted}
+    
+  \end{onlyenv}
+
+  \begin{onlyenv}<3>
+
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Output]{text}
+    thread 'main' panicked at 'index out of bounds: the len is 3 but the index is 99', /checkout/src/liballoc/vec.rs:1555:10
+    note: Run with `RUST_BACKTRACE=1` for a backtrace.
+  \end{minted}
+    
+  \end{onlyenv} 
+
+  \begin{onlyenv}<4>
+
+  \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, linenos, breaklines, label = Output]{text}
+    ...
+     2: std::panicking::default_hook::{{closure}}
+               at /checkout/src/libstd/sys_common/backtrace.rs:60
+               at /checkout/src/libstd/panicking.rs:381
+    ...
+    11: panic::main
+               at src/main.rs:4
+    12: __rust_maybe_catch_panic
+               at /checkout/src/libpanic_unwind/lib.rs:99
+    13: std::rt::lang_start
+               at /checkout/src/libstd/panicking.rs:459
+               at /checkout/src/libstd/panic.rs:361
+               at /checkout/src/libstd/rt.rs:61
+    14: main
+    ...
+  \end{minted}
+    
+  \end{onlyenv} 
+
+  \note<1>{
+
+    Все знают, что в C и C++ есть \textbf{неопределённое поведение}, мало того,
+    у \textbf{каждого компилятора своё поведение} не определено. В Rust нет
+    понятия неопределённого поведения в принципе, бывают только баги компилятора
+    (nightly), которые исправляются, все остальные возможные \textbf{ошибки так
+      или иначе отлавливаются}.
+
+  }
+
+  \note<2>{
+
+    Есть определённый род ошибок, который отлавливается Rust во время
+    выполнения.
+
+    Иногда в программе возникают подобного рода ошибки, которые программист
+    \textbf{не может обработать} или \textbf{не хочет}, так как считает, что
+    программа должна завершиться, если произойдёт такого рода ошибка. Пример:
+    прикладное приложение не смогло выделить память на куче, в таком случае
+    стоит завершить приложение, т. к., видимо, что-то не в порядке с ОС.
+    
+  }
+
+  \note<3>{
+
+    Вот такое информативное сообщение мы получим, можем изменить его по своему
+    желанию. Можно даже сделать так, чтобы отправлялись сообщения на почту с
+    логами.
+
+    Кроме всего прочего Rust позволяет нам раскрутить стек, до места, где
+    произошла ошибка, указывая при этом точное местоположение.
+
+  }
+
+  \note<4>{
+
+    По раскрученному стеку очень просто понять, где возникла ошибка и по какой
+    причине. Это вам не segmentation fault непонятный.
+    
+  }
+\end{frame}

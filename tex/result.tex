@@ -1,0 +1,75 @@
+\begin{frame}[fragile]{\insertsubsubsection}
+  \begin{onlyenv}<1>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    enum Result<T, E> {
+      Ok(T),
+      Err(E),
+    }
+  \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    pub fn hack_program(program: &Program) -> Result<Shell> {...}
+
+    match hack_program(&program) {
+      Ok(shell) => connect(shell),
+      Err(error) => {
+        // Do something with error
+      }
+    }
+  \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<3>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    fn hack_world(world: World) -> Result<Power, u32> {
+      hack_program(&program)?;
+
+      for program in &world.programs() {
+        hack_program(program).map(install_spy).map(get_money)?;
+      }
+    }
+
+  \end{minted}
+  \end{onlyenv}
+
+  \note<1>{
+
+    Некоторые ошибки могут быть не на столько критичными, чтобы паниковать,
+    поэтому вводится \textbf{новый алгебраический тип}, который может содержать
+    в себе либо \textbf{возвращаемый объект} (в случае успеха), либо
+    \textbf{объект-ошибку}.
+
+    Это удобно, т. к. позволяет нам узнать \textbf{полную информацию об ошибке}
+    в случае чего, а также задавать абсолютно \textbf{любые типы в качестве
+      возвращаемых}.
+
+  }
+
+  \note<2>{
+
+    Вернёмся к нашей \textbf{крутой программе}, которая ломает всё, что плохо
+    лежит.
+
+    Когда мы пытаемся взломать программу, мы \textbf{можем получить ошибку}, а
+    \textbf{можем получить шелл}. В случае, если получаем шелл, то подключаемся,
+    если же взломать не получилось, то либо пытаемся понять почему
+    (\textbf{обрабатывая ошибку}), либо \textbf{пробрасываем ошибку} дальше,
+    либо \textbf{завершаем программу} и грустим, либо всё, \textbf{что вам
+      угодно}.
+    
+  }
+
+  \note<3>{
+
+    Для \textbf{пробрасывания ошибки} мы можем использовать \textbf{?}.
+
+    Также мы можем \textbf{создавать цепочки вызовов функций}, которые будут
+    выполняться в случае успеха.
+
+    Можно ещё много всего показывать и рассказывать, но \textbf{времени нет}.
+
+  }
+
+\end{frame}

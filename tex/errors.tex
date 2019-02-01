@@ -1,0 +1,60 @@
+\begin{frame}{\insertsubsection}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{itemize}
+      \item<1-> Return code (\texttt{C}, \texttt{Go})
+      \item<2-> Exceptions (\texttt{C++}, \texttt{Python})
+      \item<3-> Global variable (custom)
+      \item<4-> Design by Contract (\texttt{SPARK})
+      \item<5-> Error (success) indicator (\texttt{Haskell})
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \only<1-2>{%
+        \center%
+        \includegraphics<1>[width = \textwidth]{go_err.jpg}%
+        \includegraphics<2>[width = \textwidth]{exceptions.jpg}%
+      }
+    \end{column}
+  \end{columns}
+
+  \note<1>{
+
+    Древний способ отлова ошибок, но кто-то до сих пор внедряет его в новые
+    языки. Никаких гарантий, что ты \textbf{не забудешь написать проверку}, к
+    тому же нужно \textbf{знать все коды ошибок}.
+    
+  }
+
+  \note<2>{
+
+    Самый популярный на данное время способ отлова ошибок.
+
+    Меня смущает один факт --- как вы узнаете, \textbf{какой может быть
+      exception} и \textbf{вызывает ли эта функция exception}?
+
+  }
+
+  \note<3>{
+
+    Задаётся глобальная переменная, в которую записываются все ошибки.
+    
+    Встречал только в реализациях различных фреймворков, особенно на JS.
+    
+  }
+
+  \note<4>{
+
+    Проверка входных и выходных параметров заданному условию.
+
+    Крутой способ, конечно, но это уже по части языка SPARK или контрактного
+    программирования.
+    
+  }
+
+  \note<5>{
+
+    Это уже наш вариант.
+
+  }
+\end{frame}
