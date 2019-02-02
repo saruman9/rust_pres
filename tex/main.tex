@@ -141,8 +141,15 @@ aspectratio = 169]{beamer}
 % ------------------------------------------------------------------------------
 
 \begin{frame}{Agenda}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideothersubsections]
+  \setbeamertemplate{section in toc}[sections numbered]%
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \tableofcontents[hideothersubsections, sections = {1-4}]
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \tableofcontents[hideothersubsections, sections = {5-8}]
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -206,8 +213,14 @@ aspectratio = 169]{beamer}
 \subsubsection{Result}
 \input{result}
 
-\subsection{Traits}
-\input{traits}
+\subsection{Structs}
+\subsubsection{Object-oriented programming}
+\input{oop}
+\subsubsection{Structs}
+\input{structs}
+
+\subsection{Other}
+\input{other_syntax}
 
 % ------------------------------------------------------------------------------
 
@@ -243,6 +256,12 @@ aspectratio = 169]{beamer}
 \input{applications}
 
 \subsubsection{Games}
+
+% ------------------------------------------------------------------------------
+
+\section{Pitfalls}
+\subsection{Compilation times}
+\subsection{Syntax}
 
 % ------------------------------------------------------------------------------
 

@@ -1,0 +1,79 @@
+\begin{frame}{\insertsubsection}
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+      \item<1-> Generics
+      \item<2-> Traits
+        \begin{itemize}
+        \item<2-> as interfaces
+        \item<2-> for code reuse
+        \item<2-> for operator overloading
+        \end{itemize}
+      \item<2-> Trait objects
+      \item<3-> Closures (\mintinline{rust}{|x| 2 * x})
+      \item<4-> Common collections
+      \item<4-> Smart pointers
+      \item<5-> Polymorphism, encapsulation
+      \item<5-> ...
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \only<1,4,5>{%
+      \center%
+      \includegraphics<1>[height = 0.9\textheight]{cup_of_t.jpg}
+      \includegraphics<4>[height = 0.9\textheight]{smart_pointers.jpg}
+      \includegraphics<5>[width = \textwidth]{polymorphism_c.jpg}
+      }%
+    \end{column}
+  \end{columns}
+
+  \note<1>{
+
+    Я про многое не смогу рассказать. Например, про параметризованные типы, в
+    Rust называются дженериками.
+
+  }
+
+  \note<2>{
+
+    Также не смогу рассказать про трейты (типажи), кстати, кто не знал, в C++
+    тоже есть типажи, но они не такие, как в Rust. В Rust типажи больше похожи
+    на typeclass из Haskell.
+
+    В Rust \textbf{нет всех тех проблем}, о которых нам пришлось беспокоиться на
+    С++. Мы можем больше не думать о том, \textbf{как что-то теряется, когда
+      функция вызывается каким-то образом}, и какое влияние оказывает
+    \textbf{виртуальная диспетчеризация на наш код}. В Rust \textbf{все работает
+      в едином стиле}, независимо от типа. Таким образом \textbf{целый класс
+      детских ошибок просто исчезает}.
+
+  }
+
+  \note<3> {
+
+    Про замыкания, которые основаны на типажах. Весьма интересно реализованы,
+    ведь GC нет и замыкания не похожи на замыкания из C++.
+
+  }
+
+  \note<4> {
+
+    Про коллекции структур из стандартной библиотеки и их весьма эффективную
+    реализацию. Про саму стандартную библиотеку как таковую.
+
+    Про умные указатели не расскажу, хотя там всё очень интересно, учитывая, что
+    Rust позволяет достаточно \textbf{просто создавать мультипоточные программы
+      не без помощи умных указателей}.
+
+  }
+
+  \note<5>{
+
+    Также не расскажу, как в Rust реализовывается полиморфизм и инкапсуляция.
+
+    И многое другое, всё рассказать невозможно.
+
+  }
+
+\end{frame}

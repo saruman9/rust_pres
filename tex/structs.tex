@@ -1,0 +1,87 @@
+\begin{frame}[fragile]{\insertsubsubsection}
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    struct Hacker {
+      nickname: String,
+      scope: Scope,
+      cves: Vec<u32>,
+    }
+
+    enum Scope {
+      Fuzzing,
+      Developing,
+      Exploiting,
+      Reversing,
+    }
+  \end{minted}
+
+  \note{
+
+    В Rust есть структуры, если хотите, можете думать, что это что-то типа
+    классов. Но это не классы, это всего лишь абстракция над данными.
+
+  }
+
+\end{frame}
+
+\begin{frame}[fragile]{Construction}
+  \begin{onlyenv}<1>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    impl Hacker {
+      fn new(nickname: String, scope: Scope) -> Hacker {
+        Hacker {
+          nickname: nickname,
+          scope: scope,
+          cves: Vec::new(),
+        }
+      }
+    }
+  \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<2>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    impl Hacker {
+      fn new(nickname: String, scope: Scope) -> Self {
+        Hacker {
+          nickname, scope,
+          cves: Vec::new(),
+        }
+      }
+    }
+  \end{minted}
+  \end{onlyenv}
+
+  \note<1>{
+
+    Задать создание структуры можно таким образом, если хотите, можете называть
+    это конструктором, так будет проще.
+
+  }
+
+  \note<2>{
+
+    Более компактная версия.
+
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Methods}
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    impl Hacker {
+      fn add_cve(&mut self, cve: u32) {
+        self.cves.push(cve);
+      }
+      fn cves(&self) -> &Vec<u32> {
+        &self.cves
+      }
+    }
+  \end{minted}
+
+  \note{
+
+    Таким образом задаются методы. На вход кроме обычных параметров подаётся
+    \texttt{self}, т. е. мы подаём экземпляр самого объекта. Вот здесь типичный
+    C++. У нас появляются ассоциированные со структурой методы.
+
+  }
+
+\end{frame}
