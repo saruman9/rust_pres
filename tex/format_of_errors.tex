@@ -1,9 +1,80 @@
-\begin{frame}{\insertsubsection}
+\begin{frame}[fragile]{\insertsubsection}
 
-  \note{
+  % \begin{onlyenv}<1>
+  \center%
+  \includegraphics<1>[height = .8\textheight]{compiler_driven.png}%
+  % \end{onlyenv}
 
-    Красивый и понятный вывод об ошибках.
+  \begin{onlyenv}<2>
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = C++]{text}
+    Too big, too unclear
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
+    label = Rust]{text}
+    error: expected type, found `'static`
+     --> test_err.rs:3:9
+      |
+    3 |     Ref('static str),
+      |         ^^^^^^^
+    
+    error: aborting due to previous error
+  \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<3>
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = C++]{text}
+    In file included from /usr/include/c++/8.2.1/cassert:44,
+                     from test_err.cpp:3:
+    test_err.cpp: In function ‘int main()’:
+    test_err.cpp:17:5: error: invalid use of void expression
+         assert(std::holds_alternative<std::string>(y)); // succeeds
+     ^~~~~~
+  \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<4>
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Rust]{text}
+    error: expected one of `.`, `;`, `?`, or an operator, found `}`
+     --> test_err.rs:6:1
+      |
+    5 |     let y = S("xyz".to_string())
+      |                                 - expected one of `.`, `;`, `?`, or an operator here
+    6 | }
+      | ^ unexpected token
+    
+    error: aborting due to previous error
+  \end{minted}
+  \end{onlyenv}
+
+  \note<1>{
+
+    Есть много различных методологий разработки (через тестирование, через
+    поведение, agile), но у меня впервые разработка на основе поведения
+    компилятора (или вывода на ошибках).
 
   }
+
+  \note<2>{
+
+    Пример работы с параметрическими типами. Я просто убрал символ ссылки.
+    
+  }
+
+  \note<3>{
+
+    Убрал точку с запятой.
+
+  }
+
+  \note<4>{
+
+    Кроме того, что компилятор говорит точно, где ошибка, он ещё может
+    посоветовать как её исправить.
+    
+  }
+
 
 \end{frame}

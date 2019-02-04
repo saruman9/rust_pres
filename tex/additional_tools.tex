@@ -35,6 +35,22 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{\insertsubsection}
+  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label =
+    Sanitize code]{shell}
+    $ RUSTFLAGS="-Z sanitizer=address" cargo test
+    $ RUSTFLAGS="-Z sanitizer=leak" cargo test
+    $ RUSTFLAGS="-Z sanitizer=memory" cargo test
+    $ RUSTFLAGS="-Z sanitizer=thread" cargo test
+  \end{minted}
+
+  \note{
+
+    Например, вот так просто вызываются санитайзеры для кода.
+
+  }
+\end{frame} 
+
 \begin{frame}{Services}
 
   \begin{columns}
