@@ -1,27 +1,47 @@
 \begin{frame}{\insertsubsection}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      Best package manager!
+      \begin{itemize}
+      \item Create structure of project
+      \item Check and update dependencies
+      \item Check, build and compile project
+      \item Search and install packages
+      \item Compile and run examples
+      \item Generate docs
+      \item Compile and run tests (in docs too)
+      \item Compile and run benchmarks
+      \item etc
+      \end{itemize}
+    \end{column}
+    \begin{column}{.4\textwidth}
+      \includegraphics[width = \textwidth]{c_p_p_package_manager}
+    \end{column}
+  \end{columns}
 
   \note {
 
     \begin{itemize}
-    \item npm
-    \item pip
-    \item maven
-    \item cmake
-    \item make
-    \item gult
+    \item Cargo создаёт каркас проекта
+    \item Следит за зависимостями, обновляет устаревшие по запросу
+    \item Проводит проверку, собирает и компилирует
+    \item Ищет и устанавливает в систему проекты
+    \item Компилирует и запускает примеры
+    \item Генерирует документацию
+    \item Компилирует и запускает тесты
+    \item Компилирует и запускает бенчмарки
     \end{itemize}
+
+    В отличие от многих других языков, в Rust пакетный менеджер
+    \textbf{разрабатывался вместе с компилятором языка}. Поэтому Cargo ---
+    \textbf{это стандарт}. \textbf{Отсутствие зоопарка систем сборки} позволяет
+    снизить порог вхождения в чужие проекты за счёт одинаковой структуры
+    проектов и единого унифицированного способа сборки зависимостей.
+
+    npm (js), pip (python), maven (java), hex (elixir), bundler (ruby), nuget
+    (.NET), CPAN (perl), cabal (haskell), OPAM (OCaml), Elm, cmake, make, gult
+    --- отстой.
     
   }
-\end{frame}
 
-\begin{frame}
-  Cross platform
-
-  Tests
-
-  Benchmarks
-
-  Examples
-
-  Docs
 \end{frame}

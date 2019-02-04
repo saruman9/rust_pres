@@ -1,0 +1,88 @@
+\begin{frame}[fragile]{\insertsubsection}
+  \begin{onlyenv}<1>
+    \begin{minted}[gobble = 4, frame = lines, label = Rustup install,%
+      breaklines]{shell}
+      $ curl https://sh.rustup.rs -sSf | sh
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+    \begin{minted}[gobble = 4, frame = lines, label = Toolchain format, breaklines]{text}
+    <channel>[-<date>][-<host>]
+
+    <channel>       = stable|beta|nightly|<version>
+    <date>          = YYYY-MM-DD
+    <host>          = <target-triple>
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, label = Install nightly toolchain,%
+      breaklines]{shell}
+      $ rustup toolchain install nightly
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<3>
+  \begin{minted}[gobble = 4, frame = lines, label = Cross compile,%
+      breaklines]{shell}
+      $ rustup target add mips64el-unknown-linux-gnuabi64
+      $ cargo build --target=mips64el-unknown-linux-gnuabi64
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<4>
+    \begin{itemize}
+    \item \texttt{aarch64-apple-ios}
+    \item \texttt{aarch64-fuchsia}
+    \item \texttt{arm-unknown-linux-gnueabihf}
+    \item \texttt{armv5te-unknown-linux-musleabi}
+    \item \texttt{asmjs-unknown-emscripten}
+    \item \texttt{i686-pc-windows-msvc}
+    \item \texttt{powerpc-unknown-linux-gnu}
+    \item \texttt{riscv32imac-unknown-none-elf}
+    \item \texttt{sparcv9-sun-solaris}
+    \item \texttt{wasm32-unknown-emscripten}
+    \item \texttt{x86\_64-unknown-redox}
+    \item ...
+    \end{itemize}
+  \end{onlyenv}
+
+  \note<1>{
+
+    Rustup --- это \textbf{инсталлятор Rust}, если можно так выразиться. Через
+    него вы можете установить \textbf{компоненты языка} (компилятор, стандартную
+    библиотеку, утилиты для разработки, тулчейны, контролировать версии
+    компилятора).
+
+    Вот такой простой командой вы можете установить rustup или через системный
+    пакетный менеджер.
+
+  }
+
+  \note<2>{
+
+    У Rust официально есть три версии тулчейна:
+    \begin{itemize}
+    \item stable
+    \item beta
+    \item nightly
+    \end{itemize}
+
+  }
+
+  \note<3>{
+
+    Для кросскомпиляции проекта надо всего две команды!
+    
+  }
+  
+  \note<4>{
+    
+    Существует многочисленная поддержка архитектур, ОС и библиотек, в том числе
+    \textbf{bare metal устройств}.
+    
+    Кроме инструментов, про которые я рассказал, \textbf{есть и другие}, но на
+    них уже нет времени.
+
+  }
+
+\end{frame}
