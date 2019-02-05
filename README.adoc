@@ -1,4 +1,4 @@
-= Rust and what's this thing for?
+= Rust and what's this thing for
 :author: Abc Xyz
 :toc: left
 :icons: font
