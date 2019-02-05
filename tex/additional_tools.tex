@@ -36,8 +36,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{\insertsubsection}
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label =
-    Sanitize code]{shell}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
+    label = Sanitize code]{shell}
     $ RUSTFLAGS="-Z sanitizer=address" cargo test
     $ RUSTFLAGS="-Z sanitizer=leak" cargo test
     $ RUSTFLAGS="-Z sanitizer=memory" cargo test
@@ -49,7 +49,7 @@
     Например, вот так просто вызываются санитайзеры для кода.
 
   }
-\end{frame} 
+\end{frame}
 
 \begin{frame}{Services}
 
@@ -60,6 +60,7 @@
       \item Crates.io --- all packages
       \item Docs.rs --- all documentation
       \item Rust book
+      \item Rust Playground
       \end{itemize}
     \end{column}
     \begin{column}{.6\textwidth}
@@ -81,6 +82,9 @@
     Есть уже \textbf{второе издание online книги по Rust}, также есть печатная
     версия. Советую ознакомиться. Кроме этой книги, есть ещё \textbf{пара
       официальных для более продвинутых}.
+
+    Кроме того, есть \textbf{официально поддерживаемая площадка для
+      компилирования кода} online.
 
   }
 

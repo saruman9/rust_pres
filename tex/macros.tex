@@ -1,0 +1,57 @@
+\begin{frame}[fragile]{\insertsubsection}
+  \begin{onlyenv}<1>
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, breaklines, label = Declarative macros]{rust}
+    #[macro_export]
+    macro_rules! vec {
+        ( $( $x:expr ),* ) => {
+          {
+            let mut temp_vec = Vec::new();
+            $(temp_vec.push($x);)*
+            temp_vec
+          }
+        };
+    }
+    let vec_int = vec!(1, 2, 3, 4);
+    let vec_str = vec!("H", "a", "c", "k", "e", "r");
+    println!("{:?} {:#?}", vec_int, vec_str);
+  \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
+    label = Procedural macros]{rust}
+    #[route(GET, "/")]
+    fn index() {
+      ...
+    }
+  \end{minted}
+  \end{onlyenv}
+
+  \note<1>{
+
+    В Rust \textbf{макросы --- это очень мощный инструмент}. Конечно, они не
+    такие, как в Lisp, но как по мне --- не менее мощные.
+
+    В Rust два типа макросов --- \textbf{декларативные и процедурные}.
+
+    Пример декларативного --- такой же, как в C, только \textbf{основаны они на
+      AST} представлении, отчего ошибки в них может \textbf{отловить
+      компилятор}, они \textbf{гигиенически чистые}, как в Scheme.
+
+  }
+
+  \note<2>{
+
+    Также есть процедурные макросы, которые в свою очередь делятся на:
+    \begin{itemize}
+    \item \texttt{\#[derive]} макросы,
+    \item макросы-атрибуты,
+    \item макросы-функции.
+    \end{itemize}
+
+    Представлен пример макроса-атрибута, позволяющих сократить размеры кода в
+    разы.
+
+  }
+\end{frame}

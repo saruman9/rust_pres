@@ -31,12 +31,13 @@
     реализовывают параллелизм в виде \textbf{множества различных парадигм}. Все
     библиотеки \textbf{лишены багов типа гонка данных}, благодаря использованию
     внутри концепций \textbf{владения и типажей}.
-    
+
   }
 \end{frame}
 
 \begin{frame}[fragile]{Concurrent quicksort}
-  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust,
+    linenos, breaklines]{rust}
     fn qsort(vec: &mut [i32]) {
       if vec.len() <= 1 { return; }
       let pivot = vec[random(vec.len())];
@@ -64,6 +65,6 @@
 
     \textbf{Больше о параллелизме я говорить не буду}, так как данная тема
     займёт всё время, да и я не шарю на столько, чтобы про него вещать.
-    
+
   }
 \end{frame}

@@ -1,7 +1,8 @@
 \begin{frame}[fragile]{\insertsubsection}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+      \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+        breaklines]{rust}
         enum Pohek {
           Xss(XssType),
           SocialEngineering,
@@ -17,7 +18,8 @@
       \end{minted}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+      \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+        breaklines]{rust}
         match pohek {
           Pohek::Xss(xss_type) =>
           {
@@ -49,9 +51,10 @@
 \end{frame}
 
 \begin{frame}[fragile]{Option}
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+    breaklines]{rust}
     fn find_vulnerability(program: &Program) -> Option<Vulnerability> {...}
-    
+
     fn hack_program(program: &mut Program) {
         match find_vulnerability(&program) {
             Some(vuln) => {
@@ -74,7 +77,7 @@
     объект \textbf{типа \texttt{None}}, который и является заменой Null.
 
     Всё это опять же пришло из функциональных языков.
-    
+
   }
 \end{frame}
 
@@ -108,7 +111,7 @@
       сумятицу;
     \item в случае ошибки же \textbf{выходит какой-то ад (next slide)}.
     \end{itemize}
-    
+
   }
 
   \note<2>{

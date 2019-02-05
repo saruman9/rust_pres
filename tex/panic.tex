@@ -1,32 +1,35 @@
 \begin{frame}[fragile]{\insertsubsubsection}
   \begin{onlyenv}<1>
     \includegraphics[height = 0.9\textheight]{c_p_p_ub.jpg}%
-  \end{onlyenv} 
+  \end{onlyenv}
 
   \begin{onlyenv}<2>
 
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Panic]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Panic]{rust}
     fn main() {
         let v = vec![1, 2, 3];
-    
+
         v[99];
     }
   \end{minted}
-    
+
   \end{onlyenv}
 
   \begin{onlyenv}<3>
 
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Output]{text}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Output]{text}
     thread 'main' panicked at 'index out of bounds: the len is 3 but the index is 99', /checkout/src/liballoc/vec.rs:1555:10
     note: Run with `RUST_BACKTRACE=1` for a backtrace.
   \end{minted}
-    
-  \end{onlyenv} 
+
+  \end{onlyenv}
 
   \begin{onlyenv}<4>
 
-  \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, linenos, breaklines, label = Output]{text}
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, breaklines, label = Output]{text}
     ...
      2: std::panicking::default_hook::{{closure}}
                at /checkout/src/libstd/sys_common/backtrace.rs:60
@@ -43,8 +46,8 @@
     14: main
     ...
   \end{minted}
-    
-  \end{onlyenv} 
+
+  \end{onlyenv}
 
   \note<1>{
 
@@ -66,7 +69,7 @@
     программа должна завершиться, если произойдёт такого рода ошибка. Пример:
     прикладное приложение не смогло выделить память на куче, в таком случае
     стоит завершить приложение, т. к., видимо, что-то не в порядке с ОС.
-    
+
   }
 
   \note<3>{
@@ -84,6 +87,6 @@
 
     По раскрученному стеку очень просто понять, где возникла ошибка и по какой
     причине. Это вам не segmentation fault непонятный.
-    
+
   }
 \end{frame}

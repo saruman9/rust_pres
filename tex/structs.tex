@@ -1,5 +1,6 @@
 \begin{frame}[fragile]{\insertsubsubsection}
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+    breaklines]{rust}
     struct Hacker {
       nickname: String,
       scope: Scope,
@@ -25,7 +26,8 @@
 
 \begin{frame}[fragile]{Construction}
   \begin{onlyenv}<1>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines]{rust}
     impl Hacker {
       fn new(nickname: String, scope: Scope) -> Hacker {
         Hacker {
@@ -38,7 +40,8 @@
   \end{minted}
   \end{onlyenv}
   \begin{onlyenv}<2>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines]{rust}
     impl Hacker {
       fn new(nickname: String, scope: Scope) -> Self {
         Hacker {
@@ -65,7 +68,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{Methods}
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+    breaklines]{rust}
     impl Hacker {
       fn add_cve(&mut self, cve: u32) {
         self.cves.push(cve);

@@ -1,15 +1,14 @@
 \begin{frame}[fragile]{\insertsubsection}
 
   \begin{onlyenv}<1>
-    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, label =
-      Rust, linenos, breaklines]{rust}
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, label = Rust, linenos, breaklines]{rust}
     impl<'a, 'gcx, 'tcx> InferCtxt<'a, 'gcx, 'tcx> {
         pub fn replace_bound_vars_with_placeholders<T>(&self,
-            binder: &ty::Binder<T>
-        ) -> (T, PlaceholderMap<'tcx>) where T: TypeFoldable<'tcx>
+          binder: &ty::Binder<T>) -> (T, PlaceholderMap<'tcx>)
+        where T: TypeFoldable<'tcx>
         {
             let next_universe = self.create_next_universe();
-            
             let fld_r = |br| {
                 self.tcx.mk_region(ty::RePlaceholder(ty::PlaceholderRegion {
                     universe: next_universe,
@@ -69,6 +68,6 @@
     \item Код легче читать, потому что всё обернуто в абстракции типов.
     \item Ясно что и куда передаётся в разных потоках.
     \end{itemize}
-    
+
   }
 \end{frame}

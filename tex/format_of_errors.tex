@@ -1,12 +1,11 @@
 \begin{frame}[fragile]{\insertsubsection}
 
-  % \begin{onlyenv}<1>
   \center%
   \includegraphics<1>[height = .8\textheight]{compiler_driven.png}%
-  % \end{onlyenv}
 
   \begin{onlyenv}<2>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = C++]{text}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = C++]{text}
     Too big, too unclear
   \end{minted}
 
@@ -17,7 +16,7 @@
       |
     3 |     Ref('static str),
       |         ^^^^^^^
-    
+
     error: aborting due to previous error
   \end{minted}
   \end{onlyenv}
@@ -44,7 +43,7 @@
       |                                 - expected one of `.`, `;`, `?`, or an operator here
     6 | }
       | ^ unexpected token
-    
+
     error: aborting due to previous error
   \end{minted}
   \end{onlyenv}
@@ -60,7 +59,7 @@
   \note<2>{
 
     Пример работы с параметрическими типами. Я просто убрал символ ссылки.
-    
+
   }
 
   \note<3>{
@@ -72,8 +71,12 @@
   \note<4>{
 
     Кроме того, что компилятор говорит точно, где ошибка, он ещё может
-    посоветовать как её исправить.
-    
+    посоветовать \textbf{как её исправить}.
+
+    Кроме всего, почти для каждой ошибки есть раздел в \textbf{одной большой
+      книге ошибок}, где описывается типичный пример ошибки и \textbf{гайд по её
+      исправлению}.
+
   }
 
 

@@ -1,13 +1,15 @@
 \begin{frame}[fragile]{NULL dereferences}
 
-  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = C,
+    linenos]{c}
     uint8_t* pointer = (uint8_t*) malloc(SIZE); // Might return NULL
     for(int i = 0; i < SIZE; ++i) {
       pointer[i] = i; // Might cause a Segmentation Fault
     }
   \end{minted}
-    
-  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust,
+    linenos]{rust}
     let mut vec = vec![0 as u8; SIZE];
     for i in 0..SIZE { // As C code
       vec[i] = i;
@@ -25,18 +27,20 @@
 
     В случае, \textbf{если аллокация памяти будет неудачной}, то мы либо получим
     \textbf{панику}, либо \textbf{сможем отловить ошибку}.
-    
+
   }
 
 \end{frame}
 
 \begin{frame}[fragile]{NULL dereferences (continue)}
-  \begin{minted}[gobble = 4, frame = lines, label = Functional Rust, linenos]%
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Functional
+    Rust, linenos]%
     {rust}
     let vec: Vec<u8> = (0..10).collect();
   \end{minted}
 
-  \begin{minted}[gobble = 4, frame = lines, label = Rust References, linenos]%
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust
+    References, linenos]%
     {rust}
     let my_var: u32 = 42;
     let my_ref: &u32 = &my_var; // References ALWAYS point
@@ -57,7 +61,8 @@
 
 \begin{frame}[fragile]{Use after free (C)}
 
-  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = C,
+    linenos]{c}
     uint8_t* pointer = (uint8_t*) malloc(SIZE);
     // ...
     if (err) {
@@ -83,8 +88,9 @@
 \end{frame}
 
 \begin{frame}[fragile]{Use after free (Rust)}
-    
-  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust,
+    linenos]{rust}
     let vec: Vec<u32> = Vec::new();
     {
       {
@@ -105,32 +111,35 @@
 \end{frame}
 
 \begin{frame}[fragile]{Dangling pointers (C)}
-  \begin{minted}[gobble = 4, frame = lines, label = C, linenos]{c}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = C,
+    linenos]{c}
     uint8_t* get_dangling_pointer(void) {
       uint8_t array[4] = {0};
       return &array[0];
     }
-  \end{minted} 
+  \end{minted}
 
   \note {
 
     Создаём в функции переменную на стеке, затем возвращаем ссылку на эту
     переменную --- у нас висячая ссылка. Ссылка указывает на неизвестные данные
     на стеке.
-    
+
   }
 \end{frame}
 
 \begin{frame}[fragile]{Dangling pointers (Rust)}
 
-  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust,
+    linenos]{rust}
     fn get_dangling_pointer() -> &u8 {
       let array = [0; 4];
       &array[0]
     }
   \end{minted}
-  
-  \begin{minted}[gobble = 4, frame = lines, label = Compile time error, breaklines]{text}
+
+  \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep =
+    7pt, label = Compile time error, breaklines]{text}
       |
     1 | fn get_dangling_pointer() -> &u8 {
       |                              ^ help: consider giving it a 'static lifetime: `&'static`
@@ -151,7 +160,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{Out of bounds (C)}
-  \begin{minted}[gobble = 4, frame = lines, label = C, linenos, breaklines]{c}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = C, linenos,
+    breaklines]{c}
     void print_out_of_bounds(void) {
       uint8_t array[4] = {0};
       printf("%u\r\n", array[4]);
@@ -163,19 +173,21 @@
 
     При попытке получить значение вне массива, мы получим случайное значение на
     стеке.
-    
+
   }
 \end{frame}
 
 \begin{frame}[fragile]{Out of bounds (Rust)}
-  \begin{minted}[gobble = 4, frame = lines, label = Rust, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, label = Rust,
+    linenos, breaklines]{rust}
     fn print_panics() {
       let array = [0; 4];
       println!("{}", array[4]);
     }
   \end{minted}
 
-  \begin{minted}[gobble = 4, frame = lines, label = Compile time error, breaklines]{text}
+  \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep =
+    7pt, label = Compile time error, breaklines]{text}
     error: index out of bounds: the len is 4 but the index is 4
      --> test.rs:8:20
       |
@@ -194,6 +206,6 @@
     Если же компилятор \textbf{не может определить}, по какому индексу
     происходит чтение, то в случае чтение за границами массива возникнет ошибка
     во время исполнения --- \textbf{паника}.
-    
+
   }
 \end{frame}

@@ -1,6 +1,7 @@
 \begin{frame}[fragile]{\insertsubsubsection}
   \begin{onlyenv}<1>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Result]{rust}
     enum Result<T, E> {
       Ok(T),
       Err(E),
@@ -9,7 +10,8 @@
   \end{onlyenv}
 
   \begin{onlyenv}<2>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Result]{rust}
     pub fn hack_program(program: &Program) -> Result<Shell> {...}
 
     match hack_program(&program) {
@@ -22,7 +24,8 @@
   \end{onlyenv}
 
   \begin{onlyenv}<3>
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines, label = Result]{rust}
+    \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+      breaklines, label = Result]{rust}
     fn hack_world(world: World) -> Result<Power, u32> {
       hack_program(&program)?;
 
@@ -58,7 +61,7 @@
     (\textbf{обрабатывая ошибку}), либо \textbf{пробрасываем ошибку} дальше,
     либо \textbf{завершаем программу} и грустим, либо всё, \textbf{что вам
       угодно}.
-    
+
   }
 
   \note<3>{

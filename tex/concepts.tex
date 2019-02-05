@@ -1,6 +1,7 @@
 \begin{frame}[fragile]{\insertsubsection}
 
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+    breaklines]{rust}
     //! # Main
     //! Module docs
 
@@ -13,7 +14,7 @@
         y = x as u8;
         println!("The value of y is: {}", y); // 105
     }
-  \end{minted} 
+  \end{minted}
 
   \note {
 
@@ -30,14 +31,15 @@
 
     \textbf{Приведение типов} в Rust автоматическое для безопасных случаев, в
     остальных --- ручной кастинг двух видов \texttt{as} и \texttt{transmute}.
-    
+
   }
 
 \end{frame}
 
 \begin{frame}[fragile]{\insertsubsection}
 
-  \begin{minted}[gobble = 4, frame = lines, linenos, breaklines]{rust}
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos,
+    breaklines]{rust}
     fn nsa(is_hack: bool, backdoor: &str, blue_pill: String) -> f64 {
         for c in blue_pill.chars() {
             print!("{}", c);
@@ -50,7 +52,7 @@
             3.14
         }
     }
-  \end{minted} 
+  \end{minted}
 
   \note {
 
@@ -61,7 +63,7 @@
     Для управления потоком используются: \texttt{while}, \texttt{loop},
     \texttt{if-else}, \texttt{for} --- проходит по элементам, например, по
     итераторам.
-    
+
   }
 
 \end{frame}
