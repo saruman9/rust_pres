@@ -20,11 +20,20 @@
 
   \begin{onlyenv}<2>
   \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
-    label = Procedural macros]{rust}
+    label = Procedural macros (Custom \texttt{\#[derive]})]{rust}
+    #[derive(Hackable)]
+    struct System;
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
+    label = Procedural macros (Attribute-like)]{rust}
     #[route(GET, "/")]
-    fn index() {
-      ...
-    }
+    fn index() {...}
+  \end{minted}
+
+  \begin{minted}[gobble = 4, frame = lines, framesep = 7pt, linenos, breaklines,
+    label = Procedural macros (Function-like)]{rust}
+    let sql = sql!(SELECT * FROM posts WHERE id=1);
   \end{minted}
   \end{onlyenv}
 
@@ -49,9 +58,6 @@
     \item макросы-атрибуты,
     \item макросы-функции.
     \end{itemize}
-
-    Представлен пример макроса-атрибута, позволяющих сократить размеры кода в
-    разы.
 
   }
 \end{frame}
