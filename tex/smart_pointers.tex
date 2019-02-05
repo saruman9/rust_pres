@@ -1,0 +1,33 @@
+\begin{frame}[fragile]{Smart pointers}
+  \begin{onlyenv}<1>
+  \begin{itemize}
+  \item \texttt{Box<T>} --- for allocating values on the heap
+  \item \texttt{Rc<T>}/\texttt{Arc<T>}, \texttt{Weak<T>} --- a reference
+    counting type that enables multiple ownership
+  \item \texttt{Ref<T>}, \texttt{RefMut<T>},
+    \texttt{RefCell<T>}/\texttt{Mutex<T>} --- a type that enforces the borrowing
+    rules at runtime instead of compile time
+  \item ...
+  \end{itemize}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, label = \texttt{cons} of Lisp, breaklines]{rust}
+    enum List {
+        Cons(Rc<RefCell<i32>>, Rc<List>),
+        Nil,
+    }
+    fn main() {
+        let value = Rc::new(RefCell::new(5));
+
+        let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
+
+        let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
+        let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
+
+        *value.borrow_mut() += 10;
+    }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}

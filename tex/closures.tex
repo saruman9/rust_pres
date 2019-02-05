@@ -1,0 +1,65 @@
+\begin{frame}[fragile]{Closures}
+  \begin{onlyenv}<1>
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, breaklines, label = By reference (\texttt{\&T})]{rust}
+    let color = "green";
+    // A closure to print `color` which immediately borrows (`&`)
+    // `color` and stores the borrow and closure in the `print`
+    // variable. It will remain borrowed until `print` goes out of
+    // scope. `println!` only requires `by reference` so it doesn't
+    // impose anything more restrictive.
+    let print = || println!("`color`: {}", color);
+
+    // Call the closure using the borrow.
+    print();
+    print();
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, breaklines, label = By mutable reference (\texttt{\&mut
+        T})]{rust}
+    let mut count = 0;
+    // A closure to increment `count` could take either `&mut count`
+    // or `count` but `&mut count` is less restrictive so it takes
+    // that. Immediately borrows `count`.
+    let mut inc = || {
+        count += 1;
+        println!("`count`: {}", count);
+    };
+    // Call the closure.
+    inc();
+    inc();
+    //let _reborrow = &mut count;
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<3>
+    \begin{minted}[fontsize = \footnotesize, gobble = 4, frame = lines, framesep
+      = 7pt, linenos, breaklines, label = By value (\texttt{T})]{rust}
+    // A non-copy type.
+    let movable = Box::new(3);
+    // `mem::drop` requires `T` so this must take by value. A copy type
+    // would copy into the closure leaving the original untouched.
+    // A non-copy must move and so `movable` immediately moves into
+    // the closure.
+    let consume = || {
+        println!("`movable`: {:?}", movable);
+        std::mem::drop(movable);
+    };
+    // `consume` consumes the variable so this can only be called once.
+    consume();
+    //consume();
+    \end{minted}
+  \end{onlyenv}
+
+  \begin{onlyenv}<4>
+    \begin{itemize}
+    \item \texttt{Fn}: the closure captures by reference (\texttt{\&T})
+    \item \texttt{FnMut}: the closure captures by mutable reference
+      (\texttt{\&mut T})
+    \item \texttt{FnOnce}: the closure captures by value (\texttt{T})
+    \end{itemize}
+  \end{onlyenv}
+\end{frame}
