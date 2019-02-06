@@ -57,9 +57,7 @@
 
     fn hack_program(program: &mut Program) {
         match find_vulnerability(&program) {
-            Some(vuln) => {
-                exploit(vuln);
-            }
+            Some(vuln) => exploit(vuln),
             None => println!("Better luck next time."),
         }
     }
